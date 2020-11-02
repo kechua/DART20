@@ -1,5 +1,8 @@
 # domain_adaptation_mri
-DA experiments on the brain MRI
+
+This is the repository with the code of experiments for the paper "First U-Net Layers Contain More Domain Specific Information Than The Last Ones", which has been Accepted to the workshop DART - Domain Adaptation and Representation Transfer - of MICCAI 2020.
+
+https://arxiv.org/abs/2008.07357
 
 
 ### Setup libraries:
@@ -45,15 +48,7 @@ in home directory create file `.clusterrc` and fill it with
 
 ### Build and run experiments
 
-###### 1. Paths
-(while we have only 1 dataset and only neuro-xx access)
-- path to data: `/nmnt/x3-hdd/data/cc359`
-- path to experiments: `/nmnt/x3-hdd/experiments/DA_MRI`
-
-Do not forget to use `chmod -R g+w [DIR]` and `chown -R [USER]:trusted [DIR]` to share
-permissions to write for the other users.
-
-###### 2. Build-run an experiment
+###### 1. Build-run an experiment
 
 To build and instantly run the experiment use
 ```
@@ -71,7 +66,7 @@ You can pass additional options that could be useful:
 to debug an exp while all GPUs are unavailable), additionally you should set
  `device='cpu'` in config . 1 is default and utilizes GPU.
  
-###### 3. Separately build and run an experiment
+###### 2. Separately build and run an experiment
 
 Actually, `build_run` executes 2 following commands: `dpipe-build` and `qexp`
 
@@ -91,8 +86,6 @@ dpipe-build [CONFIG] [EXP_PATH]
 qexp [EXP_PATH] [OPTIONS: {-g, -max}]
 ```
 
-###### 4. Debugging
+###### 3. Debugging
 
 All logs are being saved in `~/.cache/cluster-utils/logs`, just `cat` it!
-
-TODO..
