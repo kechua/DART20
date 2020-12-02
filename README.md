@@ -1,17 +1,17 @@
 # domain_adaptation_mri
 
-This is the repository with the code of experiments for the paper "First U-Net Layers Contain More Domain Specific Information Than The Last Ones", which has been Accepted to the workshop DART - Domain Adaptation and Representation Transfer - of MICCAI 2020.
+This is the repository with the code of experiments for the paper "First U-Net Layers Contain More Domain Specific Information Than The Last Ones"
 
 https://arxiv.org/abs/2008.07357
 
 
-### Setup libraries:
+### Libraries:
 
 ###### 1. Add `damri` to the local python:
 ```
 ln -sfn ~/workspace/domain_adaptation_mri/damri ~/miniconda3/lib/python3.*/site-packages/
 ``` 
-where `*` is a version of your python.
+where `*` is the version of your python.
 
 ###### 2. Install `deep_pipe`:
 ```
@@ -21,71 +21,40 @@ git checkout develop
 pip install -e .
 ```
 
-###### 3. Install `cluster-utils`:
-```
-git clone https://github.com/neuro-ml/cluster-utils.git
-cd cluster-utils
-pip install -e .
-```
-
-###### 4. Install `surface-distance`:
+###### 3. Install `surface-distance`:
 1) git clone https://github.com/deepmind/surface-distance.git
-2) <preferable_text_editor> surface-distance/surface_distance/__init__.py
-3) change _from metrics import *_ __to__ _from .metrics import *_
-4) pip install surface-distance/
+2) pip install surface-distance/
 
 Original repository: https://github.com/deepmind/surface-distance
 
-###### 5. More:
-in home directory create file `.clusterrc` and fill it with
+###### 4. Python & Torch versions we used:
+1) Python: 3.7.6
+2) Torch: 1.5.0 
+
+### Experiment Reproduction
+
+1) The path to your local copy of CC359 should be specified here: `config/assets/dataset/cc359.config`
+
+2) To run a single experiment, please follow the steps below:
+
+2.1) First, the experiment structure should be created:
 ```
-{
- "ram": 16,
- "gpu": 1
-}
-
-``` 
-
-### Build and run experiments
-
-###### 1. Build-run an experiment
-
-To build and instantly run the experiment use
-```
-build_run [CONFIG] [EXP_PATH]
+python -m dpipe build_experiment --config_path "$1" --experiment_path "$2"
 ```
 
-Example:
+where the first argument is a path to the `.config` file e.g., `"~/config/experiments/unet2d/unfreeze_first.config"` and the second argument is a path to the folder where the experiment structure will be organized, e.g. `"~/dart_results/unfreeze_first"`
+
+2.2) Then, to run an experiment please go to the experiment folder inside the created structure (`i` corresponds to the particular experiment, i.e. to the particular source-target pair):
 ```
-build_run ~/workspace/domain_adaptation_mri/config/experiments/test.config /nmnt/x3-hdd/experiments/DA_MRI/test
-```
-
-You can pass additional options that could be useful:
-- `-max [N]` restrict the maximum number of simultaneously running jobs to N.
-- `-g [N]` number of GPUs to use. 0 for CPU computations (could be useful 
-to debug an exp while all GPUs are unavailable), additionally you should set
- `device='cpu'` in config . 1 is default and utilizes GPU.
- 
-###### 2. Separately build and run an experiment
-
-Actually, `build_run` executes 2 following commands: `dpipe-build` and `qexp`
-
-1. In case, if you want to build tons of experiments, then submit them with `-max`
-restriction, you use `dpipe-build` until you done:) then use `qexp` on the root
-directory of all previously built experiments.
-
-2. In case, if your experiment has been crashed because of bug in the code, you
-could just fix the code and re-submit experiment with `qexp`. Probably you also 
-need to delete `.lock` file in the experiment folder.
-(bug un the code, not config, otherwise you should rebuild experiment)  
-
-They have similar syntax:
-
-```
-dpipe-build [CONFIG] [EXP_PATH]
-qexp [EXP_PATH] [OPTIONS: {-g, -max}]
+cd ~/dart_results/unfreeze_first/experiment_{i} 
 ```
 
-###### 3. Debugging
+and call the following command to start the experiment:
 
-All logs are being saved in `~/.cache/cluster-utils/logs`, just `cat` it!
+```
+python -m dpipe run_experiment --config_path "../resources.config"
+```
+
+where `resources.config` is the general `.config` file of the experiment.
+
+3) Note that switching on/off the augmentation is controlled by `augm_fn` variable in the `.config` files. The number of scans to fine-tune on is controlled by `n_add_ids`, while the share of available slices from a certain scan by `slice_sampling_interval`
