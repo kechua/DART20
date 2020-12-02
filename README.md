@@ -35,7 +35,7 @@ Original repository: https://github.com/deepmind/surface-distance
 
 ### Experiment Reproduction
 
-1) The path to your local copy of CC359 should be specified here: `config/assets/dataset/cc359.config`
+1) The path to your local copy of CC359 should be specified here: `config/assets/dataset/cc359.config`. You should place `notebook/meta.csv` in the same folder.
 
 2) To run a single experiment, please follow the steps below:
 
