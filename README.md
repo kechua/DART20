@@ -22,8 +22,10 @@ pip install -e .
 ```
 
 ###### 3. Install `surface-distance`:
-1) git clone https://github.com/deepmind/surface-distance.git
-2) pip install surface-distance/
+```
+git clone https://github.com/deepmind/surface-distance.git
+pip install surface-distance/
+```
 
 Original repository: https://github.com/deepmind/surface-distance
 
