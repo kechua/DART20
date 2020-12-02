@@ -39,14 +39,14 @@ Original repository: https://github.com/deepmind/surface-distance
 
 2) To run a single experiment, please follow the steps below:
 
-2.1) First, the experiment structure should be created:
+First, the experiment structure should be created:
 ```
 python -m dpipe build_experiment --config_path "$1" --experiment_path "$2"
 ```
 
 where the first argument is a path to the `.config` file e.g., `"~/config/experiments/unet2d/unfreeze_first.config"` and the second argument is a path to the folder where the experiment structure will be organized, e.g. `"~/dart_results/unfreeze_first"`
 
-2.2) Then, to run an experiment please go to the experiment folder inside the created structure (`i` corresponds to the particular experiment, i.e. to the particular source-target pair):
+Then, to run an experiment please go to the experiment folder inside the created structure (`i` corresponds to the particular experiment, i.e. to the particular source-target pair):
 ```
 cd ~/dart_results/unfreeze_first/experiment_{i} 
 ```
