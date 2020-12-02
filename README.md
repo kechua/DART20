@@ -1,4 +1,4 @@
-# domain_adaptation_mri
+# First U-Net Layers Contain More Domain Specific Information Than The Last Ones
 
 This is the repository with the code of experiments for the paper "First U-Net Layers Contain More Domain Specific Information Than The Last Ones"
 
