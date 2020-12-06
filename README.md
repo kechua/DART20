@@ -35,7 +35,7 @@ Original repository: https://github.com/deepmind/surface-distance
 
 ### Experiment Reproduction
 
-1) The path to your local copy of CC359 should be specified here: `config/assets/dataset/cc359.config`. You should place `notebook/meta.csv` in the same folder with the data.
+1) The path to your local copy of CC359 should be specified here: `config/assets/dataset/cc359.config`. You should place `notebook/meta.csv` in the same folder with the data. From the available in `CC359` ground truths we used the "Silver standard" binary mask (https://sites.google.com/view/calgary-campinas-dataset/download)
 
 2) To run a single experiment, please follow the steps below:
 
