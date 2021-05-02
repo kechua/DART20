@@ -17,7 +17,7 @@ where `*` is the version of your python.
 ```
 git clone https://github.com/neuro-ml/deep_pipe.git
 cd deep_pipe
-git checkout develop
+git checkout 5c08d5759d51c0731cc636c2866bb3a538ffab7a
 pip install -e .
 ```
 
